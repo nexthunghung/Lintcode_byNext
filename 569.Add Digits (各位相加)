@@ -1,0 +1,15 @@
+##Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+
+#---------------------------------------
+
+class Solution:
+    # @param {int} num a non-negative integer
+    # @return {int} one digit
+    def addDigits(self, num):
+        # Write your code here
+        while num > 9:
+            num = num % 10 + self.addDigits(num//10)
+        return num
+        
+##----------------------------------------
+Total Runtime: 574 ms        
