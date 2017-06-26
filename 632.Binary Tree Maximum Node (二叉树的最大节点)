@@ -1,0 +1,26 @@
+##Find the maximum node in a binary tree, return the node.
+
+class Solution:
+    # @param {TreeNode} root the root of binary tree
+    # @return {TreeNode} the max node
+    maxnum = -9999999
+    maxnode = None
+
+    def maxNode(self, root):
+        if root is None:
+            return None
+        self.max1(root)
+        return self.maxnode
+
+    def max1(self, node):
+        if node is None:
+            return None
+        else:
+            if node.val > self.maxnum:
+                self.maxnum = node.val
+                self.maxnode = node
+        self.max1(node.left)
+        self.max1(node.right)
+        
+##-------------------
+##Total Runtime: 441 ms
