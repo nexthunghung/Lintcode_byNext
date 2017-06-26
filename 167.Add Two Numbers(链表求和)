@@ -1,0 +1,45 @@
+##You have two numbers represented by a linked list, where each node contains a single digit. The digits are stored in reverse order, such that the 1's digit is at the head of the list. Write a function that adds the two numbers and returns the sum as a linked list.
+
+##--------------------------------------------------------------------------
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    # @param l1: the first list
+    # @param l2: the second list
+    # @return: the sum list of l1 and l2 
+    def addLists(self, l1, l2):
+        # write your code here
+        if l1 is None: return l2
+        if l2 is None: return l1
+        head1 = l1
+        head2 = l2
+        
+        while head1.next != None or head2.next != None:
+            sum1 = head1.val + head2.val
+            if head1.next is None:
+                head1.next = ListNode(0)
+            if head2.next is None:
+                head2.next = ListNode(0)
+            if sum1>9:
+                head1.val = sum1 % 10
+                head1.next.val += 1
+            else:
+                head1.val = sum1
+            head1 = head1.next
+            head2 = head2.next
+            
+        sum2 = head1.val + head2.val
+        if sum2 >9:
+            head1.val = sum2 % 10
+            head1.next = ListNode(1)
+        else:
+            head1.val = sum2
+        return l1
+        
+##-----------------------------------------
+##Total Runtime: 664 ms
