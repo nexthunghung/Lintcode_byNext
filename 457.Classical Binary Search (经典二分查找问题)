@@ -1,0 +1,41 @@
+##Find any position of a target number in a sorted array. Return -1 if target does not exist.
+##-----------------------------------------
+
+class Solution:
+    # @param {int[]} A an integer array sorted in ascending order
+    # @param {int} target an integer
+    # @return {int} an integer
+    def findPosition(self, A, target):
+        # Write your code here
+        x = len(A)
+        max_num = x-1
+        min_num = 0
+        mid = (max_num + min_num) // 2
+        if x == 0:
+            return -1
+        elif x == 1:
+            if A[0] == target:
+                return 0
+            return -1
+        while mid != 0 and A[mid] != target:
+            if A[mid] > target:
+                max_num = mid
+                mid = (max_num + min_num)//2
+            else:
+                min_num = mid
+                mid = (max_num + min_num)//2
+                if min_num != mid:
+                    continue
+                else:
+                    if A[mid+1] == target:
+                        return mid+1
+                        break
+                    else:
+                        return -1
+                        break
+        if mid == 0:
+            return -1
+        return mid
+        
+##--------------------------------------------
+##Total Runtime: 10560 ms
