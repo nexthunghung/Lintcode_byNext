@@ -7,6 +7,7 @@
 ##The first ten numbers in Fibonacci sequence is:
 
 ##0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
+##--------------------------------------------------------
 
 class Solution:
     # @param n: an integer
