@@ -1,0 +1,45 @@
+##Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+##--------------------------------------------------------
+
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+
+class Solution:
+    """
+    @param root: The root of binary tree.
+    @return: Level order in a list of lists of integers
+    """
+    result = []
+
+    def levelOrder(self, root):
+        # write your code here
+
+        if root is None:
+            return self.result
+        temp = []
+        temp.append(root.val)
+        self.result.append(temp)
+        index = 1
+        self.traversal(root.left, index)
+        self.traversal(root.right, index)
+        return self.result
+
+    def traversal(self, root, index = 0):
+        if root is None:
+            return None
+        if index < (len(self.result)):
+            self.result[index].append(root.val)
+        else:
+            temp = []
+            temp.append(root.val)
+            self.result.append(temp)
+        self.traversal(root.left, index+1)
+        
+##-----------------------------------------------------
+##Total Runtime 900ms
