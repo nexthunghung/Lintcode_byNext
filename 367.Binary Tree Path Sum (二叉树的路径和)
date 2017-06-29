@@ -1,0 +1,54 @@
+##Given a binary tree, find all paths that sum of the nodes in the path equals to a given number target.
+
+##A valid path is from root node to any of the leaf nodes.
+
+##----------------------------------------------------------------------
+
+
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+
+class Solution:
+    # @param {TreeNode} root the root of binary tree
+    # @param {int} target an integer
+    # @return {int[][]} all valid paths
+
+    result = []
+
+    def binaryTreePathSum(self, root, target):
+        # Write your code here
+        temp = []
+        if root is None:
+            return self.result
+        target -= root.val
+        temp.append(root.val)
+        temp2 = temp[:]
+        if target == 0:
+            if (not root.left) and (not root.right):
+                self.result.append(temp)
+        else:
+            self.fonc(root.left, target, temp)
+            self.fonc(root.right, target, temp2)
+        return self.result
+
+    def fonc(self, root, target, temp1):
+        if root is None:
+            return None
+        target -= root.val
+        temp1.append(root.val)
+        temp2 = temp1[:]
+        if target == 0:
+            if (not root.left) and (not root.right):
+                self.result.append(temp1)
+                return self.result
+        self.fonc(root.left, target, temp1)
+        self.fonc(root.right, target, temp2)
+        
+##--------------------------------
+##Total Runtime: 365 ms
