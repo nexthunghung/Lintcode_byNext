@@ -1,0 +1,53 @@
+##You are climbing a stair case. It takes n steps to reach to the top.
+
+##Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+##-------------------------------------------------------
+
+
+class Solution:
+    """
+    @param n: An integer
+    @return: An integer
+    """
+    #index = 0
+    def climbStairs(self, n):
+        # write your code here
+        temp = 0
+        if n == 0:
+            return 1
+        if n == 1:
+            return 1
+        if n == 2:
+            return 2
+        r1 = 1
+        r2 = 2
+        # the result = result of (n-1) + result of (n-2)
+        # Maybe i'm a genius ^_^
+        while n > 2:
+            temp = r1 +r2
+            r1 = r2
+            r2 = temp
+            n -= 1
+        return temp
+
+##------------------------------
+##Total Runtime: 413 ms
+
+##Below is aother solution, which is 0(n!), too slow, it can't pass the lintcode judge, but i think it's correct:
+
+class Solution:
+    """
+    @param n: An integer
+    @return: An integer
+    """
+    #index = 0
+    def climbStairs(self, n):
+        # write your code here
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        if n == 2:
+            return 2
+        if n > 2:
+            return self.climbStairs(n-1) + self.climbStairs(n-2)
