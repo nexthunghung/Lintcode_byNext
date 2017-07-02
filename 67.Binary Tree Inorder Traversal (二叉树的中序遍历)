@@ -16,25 +16,18 @@ class Solution:
     @param root: The root of binary tree.
     @return: Inorder in ArrayList which contains node values.
     """
-    r = []
-    
+    result = []
+
     def inorderTraversal(self, root):
         # write your code here
         if root is None:
-            pass
+            self.result
         else:
-            self.T(root.left)
-            self.r.append(root.val)
-            self.T(root.right)
-        return self.r   
-        
-    def T(self,root):    
-        if root is None:
-            return None
-        else:
-            #node = root
-            self.T(root.left)
-            self.r.append(root.val)
-            self.T(root.right)
+            self.inorderTraversal(root.left)
+            self.result.append(root.val)
+            self.inorderTraversal(root.right)
+        return self.result
             
 ##----------------------
+##Total Runtime: 691 ms
+
