@@ -1,0 +1,35 @@
+##For the given binary tree, return a deep copy of it.
+##-----------------------------------------------------
+
+
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        this.val = val
+        this.left, this.right = None, None
+"""
+class Solution:
+    """
+    @param {TreeNode} root: The root of binary tree
+    @return {TreeNode} root of new tree
+    """
+
+    def cloneTree(self, root):
+        # Write your code here
+        if root is None:
+            return None
+        #Notes:A binary tree is makes up several nodes, so clone the tree is just clone all nodes. Each node is a instance object of the class TreeNode, node.left of node.right point to the next instance object, that's all!
+        
+        #define a new node
+        new = TreeNode(root.val)
+        
+        #self.cloneTree(root.left) achieve 2 things: one is define a new node, the other is return the new node assign to new.left
+        new.left = self.cloneTree(root.left)
+        new.right = self.cloneTree(root.right)
+        
+        # return a node which is assign to left of right
+        return new
+        
+##----------------------------------------------------
+##Total runtime: 327ms
