@@ -1,0 +1,42 @@
+##Given a sorted (increasing order) array, Convert it to create a binary tree with minimal height.
+#-------------------------------------------------------------------------------------------------
+
+
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+class Solution:
+    """
+    @param A: a list of integer
+    @return: a tree node
+    """
+
+    def sortedArrayToBST(self, A):
+        # write your code here
+        if len(A) > 1:
+            
+            #create a Tree from the middle number of A
+            
+            mid = (len(A) - 1)//2
+            root = TreeNode(A[mid])
+            
+            # split 2 parts of the Tree to recur
+            
+            root.left = self.sortedArrayToBST(A[:mid])
+            root.right = self.sortedArrayToBST(A[mid+1:])
+            return root
+        
+        # set 2 terminate conditions
+        elif len(A) == 1:
+            root = TreeNode(A[0])
+            return root
+        else:
+            return None
+            
+            
+##----------------------------------------------------
+##Total runtime 932ms
