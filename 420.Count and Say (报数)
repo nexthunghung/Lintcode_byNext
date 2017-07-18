@@ -1,0 +1,42 @@
+##The count-and-say sequence is the sequence of integers beginning as follows:
+
+1, 11, 21, 1211, 111221, ...
+
+1 is read off as "one 1" or 11.
+
+11 is read off as "two 1s" or 21.
+
+21 is read off as "one 2, then one 1" or 1211.
+
+Given an integer n, generate the nth sequence.
+
+## -----------------------------------------------------------------------
+
+class Solution:
+    # @param {int} n the nth
+    # @return {string} the nth sequence
+    def countAndSay(self, n):
+        # Write your code here
+        result = '1'
+        record = ''
+        if n == 1:
+            return '1'
+        while n-1:
+            n -= 1
+            # record is using for recording the part of result
+            record = ''
+            # define the head
+            temp = result[0]
+            count = 0
+            for i in range(len(result)):
+                if temp != result[i]:
+                    record = record + str(count) + str(temp)
+                    temp = result[i]
+                    count = 1
+                else:
+                    count += 1
+            result = record + str(count) + str(temp)
+        return result
+        
+## --------------------------------------------------------------------
+## Total runtime 397ms
