@@ -1,0 +1,26 @@
+## count how many 1 in binary representation of a 32-bit integer.
+## ------------------------------------------------------------
+
+class Solution:
+    # @param num: an integer
+    # @return: an integer, the number of ones in num
+    def countOnes(self, num):
+        # write your code here
+        if num >= 0:
+            b_num = bin(num)
+            count_1 = 0
+            for i in b_num:
+                if i == '1':
+                    count_1 += 1
+            return count_1
+        else:
+            b_num = list(format((abs(num)-1), '#034b')[2:])
+            count_1 = 0
+            for i in b_num:
+                if i == '0':
+                    count_1 += 1
+            return count_1
+
+
+##-----------------------------------------------------------------
+## Total runtime:320ms
